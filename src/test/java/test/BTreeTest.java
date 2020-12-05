@@ -29,7 +29,7 @@ public class BTreeTest {
     @Test
     public void testingFirstElementInsert() {
         BTree bTree = new BTree(4);
-        bTree.insert(2, 2000);
+        bTree.insert(bTree,2, 2000);
         assertEquals(bTree.root.key[0], 2);
         assertEquals(bTree.root.value[0], 2000);
     }
@@ -37,11 +37,28 @@ public class BTreeTest {
     @Test
     public void testingTwoElementsInsert() {
         BTree bTree = new BTree(4);
-        bTree.insert(6, 3000);
-        bTree.insert(2, 2000);
+        bTree.insert(bTree,6, 3000);
+        bTree.insert(bTree,2, 2000);
         assertEquals(bTree.root.key[0], 2);
         assertEquals(bTree.root.value[0], 2000);
         assertEquals(bTree.root.key[1], 6);
         assertEquals(bTree.root.value[1], 3000);
+    }
+
+    @Test
+    public void testingFourElementsInsert() {
+        BTree bTree = new BTree(2);
+        bTree.insert(bTree, 6, 3000);
+        bTree.insert(bTree,2, 2000);
+        bTree.insert(bTree,1, 7000);
+        bTree.insert(bTree,14, 6000);
+        assertEquals(bTree.root.key[0], 2);
+        assertEquals(bTree.root.value[0], 2000);
+        assertEquals(bTree.root.child[0].key[0], 1);
+        assertEquals(bTree.root.child[0].value[0], 7000);
+        assertEquals(bTree.root.child[1].key[0], 6);
+        assertEquals(bTree.root.child[1].value[0], 3000);
+        assertEquals(bTree.root.child[1].key[1], 14);
+        assertEquals(bTree.root.child[1].value[1], 6000);
     }
 }
