@@ -91,4 +91,22 @@ public class BTree {
             nonfullInsert(r, key, value);
         }
     }
+
+    public BNode search(BNode node, int key) {
+        int i = 0;
+
+        while (i < node.count && key > node.key[i]) {
+            i++;
+        }
+
+        if (i <= node.count && key == node.key[i]) {
+            return node;
+        }
+
+        if (node.leaf) {
+            return null;
+        } else {
+            return search(node.getChild(i), key);
+        }
+    }
 }

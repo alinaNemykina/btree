@@ -3,6 +3,7 @@ package test;
 import org.junit.Test;
 import utils.btree.BNode;
 import utils.btree.BTree;
+
 import static org.junit.Assert.*;
 
 public class BTreeTest {
@@ -29,7 +30,7 @@ public class BTreeTest {
     @Test
     public void testingFirstElementInsert() {
         BTree bTree = new BTree(4);
-        bTree.insert(bTree,2, 2000);
+        bTree.insert(bTree, 2, 2000);
         assertEquals(bTree.root.key[0], 2);
         assertEquals(bTree.root.value[0], 2000);
     }
@@ -37,8 +38,8 @@ public class BTreeTest {
     @Test
     public void testingTwoElementsInsert() {
         BTree bTree = new BTree(4);
-        bTree.insert(bTree,6, 3000);
-        bTree.insert(bTree,2, 2000);
+        bTree.insert(bTree, 6, 3000);
+        bTree.insert(bTree, 2, 2000);
         assertEquals(bTree.root.key[0], 2);
         assertEquals(bTree.root.value[0], 2000);
         assertEquals(bTree.root.key[1], 6);
@@ -49,9 +50,9 @@ public class BTreeTest {
     public void testingFourElementsInsert() {
         BTree bTree = new BTree(2);
         bTree.insert(bTree, 6, 3000);
-        bTree.insert(bTree,2, 2000);
-        bTree.insert(bTree,1, 7000);
-        bTree.insert(bTree,14, 6000);
+        bTree.insert(bTree, 2, 2000);
+        bTree.insert(bTree, 1, 7000);
+        bTree.insert(bTree, 14, 6000);
         assertEquals(bTree.root.key[0], 2);
         assertEquals(bTree.root.value[0], 2000);
         assertEquals(bTree.root.child[0].key[0], 1);
@@ -60,5 +61,19 @@ public class BTreeTest {
         assertEquals(bTree.root.child[1].value[0], 3000);
         assertEquals(bTree.root.child[1].key[1], 14);
         assertEquals(bTree.root.child[1].value[1], 6000);
+    }
+
+    @Test
+    public void testingSearch(){
+        BTree bTree = new BTree(2);
+        bTree.insert(bTree, 6, 3000);
+        bTree.insert(bTree, 2, 2000);
+        bTree.insert(bTree, 1, 7000);
+        bTree.insert(bTree, 14, 6000);
+        bTree.insert(bTree, 3, 8000);
+        BNode node = bTree.search(bTree.root, 14);
+        assertEquals(node.value[2], 6000);
+        node = bTree.search(bTree.root, 3);
+        assertEquals(node.value[0], 8000);
     }
 }

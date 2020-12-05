@@ -18,4 +18,8 @@ public class BNode {
         this.leaf = true;
         this.count = 0;
     }
+
+    public BNode getChild(int index) {
+        return child[index];
+    }
 }
