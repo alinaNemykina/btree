@@ -77,6 +77,10 @@ public class BTree {
     }
 
     public void insert(BTree t, int key, int value) {
+        if (value == 0 || key == 0) {
+            throw new RuntimeException("Нулевое значение");
+        }
+
         BNode r = t.root;
 
         if (r.count == 2 * order - 1) {

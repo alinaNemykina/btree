@@ -6,6 +6,8 @@ import utils.btree.BTree;
 
 import static org.junit.Assert.*;
 
+import org.junit.jupiter.api.Assertions;
+
 public class BTreeTest {
 
     @Test
@@ -90,5 +92,12 @@ public class BTreeTest {
         bTree.delete(bTree, 14);
         assertEquals(bTree.root.child[1].key[2], 0);
         assertEquals(bTree.root.child[1].value[2], 0);
+    }
+
+    @Test
+    public void testingNonzeroNumbers() {
+        BTree bTree = new BTree(4);
+        Assertions.assertThrows(RuntimeException.class, () -> bTree.insert(bTree, 0, 4000));
+        Assertions.assertThrows(RuntimeException.class, () -> bTree.insert(bTree, 7, 0));
     }
 }
