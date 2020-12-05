@@ -18,4 +18,11 @@ public class BTreeTest {
         assertTrue(bNode.leaf);
         assertEquals(bNode.count, 0);
     }
+
+    @Test
+    public void createBTree() {
+        BTree bTree = new BTree(4);
+        assertEquals(bTree.order, 4);
+        assertNotNull(bTree.root);
+    }
 }
