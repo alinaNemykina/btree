@@ -25,4 +25,12 @@ public class BTreeTest {
         assertEquals(bTree.order, 4);
         assertNotNull(bTree.root);
     }
+
+    @Test
+    public void testingFirstElementInsert() {
+        BTree bTree = new BTree(4);
+        bTree.insert(2, 2000);
+        assertEquals(bTree.root.key[0], 2);
+        assertEquals(bTree.root.value[0], 2000);
+    }
 }
