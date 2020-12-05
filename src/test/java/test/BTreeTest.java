@@ -64,7 +64,7 @@ public class BTreeTest {
     }
 
     @Test
-    public void testingSearch(){
+    public void testingSearch() {
         BTree bTree = new BTree(2);
         bTree.insert(bTree, 6, 3000);
         bTree.insert(bTree, 2, 2000);
@@ -75,5 +75,20 @@ public class BTreeTest {
         assertEquals(node.value[2], 6000);
         node = bTree.search(bTree.root, 3);
         assertEquals(node.value[0], 8000);
+    }
+
+    @Test
+    public void testingDeletion() {
+        BTree bTree = new BTree(2);
+        bTree.insert(bTree, 6, 3000);
+        bTree.insert(bTree, 2, 2000);
+        bTree.insert(bTree, 1, 7000);
+        bTree.insert(bTree, 14, 6000);
+        bTree.insert(bTree, 3, 8000);
+        assertEquals(bTree.root.child[1].key[2], 14);
+        assertEquals(bTree.root.child[1].value[2], 6000);
+        bTree.delete(bTree, 14);
+        assertEquals(bTree.root.child[1].key[2], 0);
+        assertEquals(bTree.root.child[1].value[2], 0);
     }
 }

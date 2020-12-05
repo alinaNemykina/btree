@@ -109,4 +109,25 @@ public class BTree {
             return search(node.getChild(i), key);
         }
     }
+
+    public void delete(BTree t, int key) {
+        BNode temp = search(t.root, key);
+
+        if (temp.leaf && temp.count > order - 1) {
+            int i = 0;
+
+            // 🤪
+            while (key > temp.key[i]) {
+                i++;
+            }
+
+            for (int j = i; j < 2 * order - 2; j++) {
+                temp.key[j] = temp.key[j + 1];
+                temp.value[j] = temp.value[j + 1];
+            }
+            temp.key[temp.count - 1] = 0;
+            temp.value[temp.count - 1] = 0;
+            temp.count--;
+        }
+    }
 }
