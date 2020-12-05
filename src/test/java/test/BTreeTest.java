@@ -33,4 +33,15 @@ public class BTreeTest {
         assertEquals(bTree.root.key[0], 2);
         assertEquals(bTree.root.value[0], 2000);
     }
+
+    @Test
+    public void testingTwoElementsInsert() {
+        BTree bTree = new BTree(4);
+        bTree.insert(6, 3000);
+        bTree.insert(2, 2000);
+        assertEquals(bTree.root.key[0], 2);
+        assertEquals(bTree.root.value[0], 2000);
+        assertEquals(bTree.root.key[1], 6);
+        assertEquals(bTree.root.value[1], 3000);
+    }
 }
